@@ -44,10 +44,10 @@ const flightSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 });
 
-flightSchema.pre('save', function(next) {
-  this.slug = slugify(this.name, { lower: true });
-  next();
-});
+// flightSchema.pre('save', function(next) {
+//   this.slug = slugify(this.name, { lower: true });
+//   next();
+// });
 
 const Flight = mongoose.model('Flight', flightSchema);
 
