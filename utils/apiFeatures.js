@@ -37,8 +37,13 @@ class APIFeatures {
     }
 
     paginate() {
-        const page = +this.queryString.page || 1;
-        const limit = +this.queryString.limit || 100;
+        let page = parseInt(this.queryString.page, 10);
+        let limit = parseInt(this.queryString.limit, 10);
+
+        page = Number.isNaN(page) || page <= 0 ? 1 : page;
+
+        const MAX_LIMIT = 1000;
+        limit = Number.isNaN(limit) || limit <= 0 ? 100 : Math.min(limit, MAX_LIMIT);
         const skip = (page - 1) * limit;
 
         this.query = this.query.skip(skip).limit(limit);

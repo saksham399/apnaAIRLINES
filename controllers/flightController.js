@@ -28,6 +28,9 @@ exports.getAllFlights = async (req, res) => {
 
 exports.getFlight = async (req, res) => {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ status: 'fail', message: 'Invalid flight ID format' });
+        }   
         const flight = await Flight.findById(req.params.id);
         res.status(200).json({
             status: 'success',
@@ -46,6 +49,9 @@ exports.getFlight = async (req, res) => {
 
 exports.createFlight = async (req, res) => {
     try {
+        if (!Object.keys(req.body).length) {
+            return res.status(400).json({ status: 'fail', message: 'No data provided' });
+        }
         const newFlight = await Flight.create(req.body);
         res.status(201).json({
             status: 'success',
@@ -64,6 +70,12 @@ exports.createFlight = async (req, res) => {
 
 exports.updateFlight = async (req, res) => {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ status: 'fail', message: 'Invalid flight ID format' });
+        }
+        if (!Object.keys(req.body).length) {
+            return res.status(400).json({ status: 'fail', message: 'No data provided' });
+        }
         const updatedFlight = await Flight.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators:  true
@@ -86,6 +98,9 @@ exports.updateFlight = async (req, res) => {
 
 exports.deleteFlight = async (req, res) => {
     try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ status: 'fail', message: 'Invalid flight ID format' });
+        }
         const flight = await Flight.findByIdAndDelete(req.params.id);
         res.status(204).json({
             status: 'success',
