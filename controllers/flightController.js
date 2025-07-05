@@ -1,5 +1,6 @@
 const Flight = require('../models/flightModel');
 const APIFeatures = require('../utils/apiFeatures');
+const mongoose = require('mongoose');
 
 exports.getAllFlights = async (req, res) => {
     try{
@@ -10,18 +11,14 @@ exports.getAllFlights = async (req, res) => {
             .paginate();
             
         const flights = await features.query;
-        res.status(200).json({
-            status: 'success',
-            results: flights.length,
-            data: {
-                flights
-            }
+        res.status(200).render('overview', {
+            title: 'All Flights',
+            flights
         });
     } catch (err) {
-        res.status(404).json({
-            status: 'error',
-            message: 'Error fetching flights',
-            error: err.message
+        res.status(500).render('error', {
+            title: 'Error',
+            message: 'Unable to load flights'
         });
     }
 }
@@ -32,17 +29,14 @@ exports.getFlight = async (req, res) => {
             return res.status(400).json({ status: 'fail', message: 'Invalid flight ID format' });
         }   
         const flight = await Flight.findById(req.params.id);
-        res.status(200).json({
-            status: 'success',
-            data: {
-                flight
-            }
+        res.status(200).render('flight', {
+            title: 'Flight Details',
+            flight
         });
     } catch (err) {
-        res.status(404).json({
-            status: 'error',
-            message: 'No such flight found',
-            error: err.message
+        res.status(500).render('error', {
+            title: 'Error',
+            message: 'Unable to load flight'
         });
     }
 }

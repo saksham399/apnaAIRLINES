@@ -1,0 +1,40 @@
+extends base
+
+block content
+  .container.mt-5
+    h1.text-center.mb-4 APNA AIRLINES Flights Overview
+    if flights.length
+      form(id="flightForm")
+        table.table.table-bordered.table-hover
+          thead.table-dark
+            tr
+              th
+              th Flight #
+              th Airline
+              th Origin
+              th Destination
+              th Departure
+              th Arrival
+          tbody
+            each flight in flights
+              tr
+                td
+                  input(type="radio", name="flightId", value=flight._id.toString(), required)
+                td= flight.flightNumber
+                td= flight.airline
+                td= flight.origin
+                td= flight.destination
+                td= flight.departure.toLocaleString ? flight.departure.toLocaleString() : flight.departure
+                td= flight.arrival.toLocaleString ? flight.arrival.toLocaleString() : flight.arrival
+        .text-center.mt-4
+          button.btn.btn-primary(type="submit") View Details
+      script.
+        document.getElementById('flightForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          const selected = document.querySelector('input[name="flightId"]:checked');
+          if (selected) {
+            window.location.href = `/v1/flights/${selected.value}`;
+          }
+        });
+    else
+      .alert.alert-warning.text-center No flights found.
