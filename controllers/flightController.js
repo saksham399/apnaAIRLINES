@@ -13,6 +13,7 @@ exports.getAllFlights = async (req, res) => {
         const flights = await features.query;
         res.status(200).render('overview', {
             title: 'All Flights',
+            message: `You have ${res.get('X-RateLimit-Remaining')} requests remaining`,
             flights
         });
     } catch (err) {

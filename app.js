@@ -15,11 +15,12 @@ app.set('views', `${__dirname}/views`);
 
 
 const limiter = rateLimit({
-  max: 100,
-  windowMs: 60 * 60 * 1000,
-  message: 'Too many requests from this IP'
+  max: 2,
+  windowMs: 60 * 1000,
+  message: 'Too many requests from this IP',
+  standardHeaders: true
 });
-app.use('/api', limiter);
+app.use('/v1/flights', limiter);
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
