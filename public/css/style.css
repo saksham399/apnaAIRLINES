@@ -1,0 +1,19 @@
+.btn-primary {
+  background-color: whitesmoke;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #f0f0f0;
+  border: thin solid black;
+  color: black;
+}
+
+.dropdown {
+  margin-right: 300px;
+  margin-top: 20px;
+}

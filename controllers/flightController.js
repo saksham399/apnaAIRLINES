@@ -11,14 +11,16 @@ exports.getAllFlights = async (req, res) => {
             .paginate();
             
         const flights = await features.query;
-        res.status(200).render('overview', {
-            title: 'All Flights',
+        res.status(200).json({
+            status: 'success',
             message: `You have ${res.get('X-RateLimit-Remaining')} requests remaining`,
-            flights
+            data: {
+                flights
+            }
         });
     } catch (err) {
-        res.status(500).render('error', {
-            title: 'Error',
+        res.status(500).json({
+            status: 'error',
             message: 'Unable to load flights'
         });
     }
@@ -30,13 +32,15 @@ exports.getFlight = async (req, res) => {
             return res.status(400).json({ status: 'fail', message: 'Invalid flight ID format' });
         }   
         const flight = await Flight.findById(req.params.id);
-        res.status(200).render('flight', {
-            title: 'Flight Details',
-            flight
+        res.status(200).json({
+            status: 'success',
+            data: {
+                flight: flight
+            }
         });
     } catch (err) {
-        res.status(500).render('error', {
-            title: 'Error',
+        res.status(500).json({
+            status: 'error',
             message: 'Unable to load flight'
         });
     }
