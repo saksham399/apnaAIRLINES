@@ -1,9 +1,0 @@
-extends base
-
-block content
-  .container.mt-5
-    .alert.alert-danger.text-center(role="alert")
-      h2.mb-3 #{title || 'Something went wrong'}
-      p.lead #{message || 'An unexpected error occurred. Please try again later.'}
-    .text-center.mt-4
-      a.btn.btn-primary(href="/v1/flights/") Back to Home

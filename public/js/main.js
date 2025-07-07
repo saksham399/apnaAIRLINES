@@ -21,7 +21,7 @@ fetch('/v1/flights/')
                         </tr>
                     </table>
                     <div class="text-center">
-                        <a href="/v1/flights/${flight._id}" class="btn btn-primary w-100">View More Details</a>
+                        <a href="/flight.html?id=${flight._id}" class="btn btn-primary w-100">View More Details</a>
                     </div>
                 </div>
             `;
