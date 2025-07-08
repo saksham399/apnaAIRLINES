@@ -7,25 +7,38 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body>
+    <body class="bg-dark">
         <table class="table table-borderless">
             <tr>
                 <td>
-                    <h1 class="my-4 text-center">Flight Overview</h1>
+                    <h1 class="my-4 text-center">
+                        <a href="#" class="text-decoration-none text-dark fw-bold">Flight Overview</a>
+                    </h1>
                 </td>
                 <td class="align-middle">
-                    <div class="dropdown mb-3">
+                    <div class="dropdown mb-3" data-bs-auto-close="outside">
                         <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"> Filter</button>
+                        <div class="dropdown-menu p-4 w-100" aria-labelledby="dropdownMenuButton">
+                            <label for="originFilter" class="form-label">Origin</label>
+                            <input type="text" class="form-control mb-2" id="originFilter" placeholder="Enter origin">
+                            <label for="destinationFilter" class="form-label">Destination</label>
+                            <input type="text" class="form-control mb-2" id="destinationFilter" placeholder="Enter destination">
+                            <label for="departureDateFilter" class="form-label">Departure Date</label>
+                            <input type="date" class="form-control mb-2" id="departureDateFilter">
+                            <label for="arrivalDateFilter" class="form-label">Arrival Date</label>
+                            <input type="date" class="form-control mb-2" id="arrivalDateFilter">
+                            <button class="btn btn-primary w-100" id="applyFilter">Apply Filter</button>
+                        </div>
                     </div>
                 </td>
-                <td class="align-middle" id="newFlight">
+                <td class="align-middle pe-5" id="newFlight">
                     <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#createFlightModal">New Flight</button>
                 </td>
             </tr>
         </table><br>
         <div class="container" id="flights">
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-1y5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/js/main.js"></script>
     </body>
 </html>
