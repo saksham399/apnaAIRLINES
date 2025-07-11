@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 fetch('/v1/flights/')
     .then(response => response.json())
     .then(data => {
@@ -75,3 +76,48 @@ if (applybtn) {
             });
     })
 }
+
+const createFlightButton = document.getElementById('createFlightButton');
+if (createFlightButton) {
+    createFlightButton.addEventListener('click', () => {
+        console.log('Create Flight Button Clicked');
+        const flightNumber = document.getElementById('flightNumber').value;
+        const aircraft = document.getElementById('aircraft').value;
+        const airline = document.getElementById('airline').value;
+        const origin = document.getElementById('origin').value;
+        const destination = document.getElementById('destination').value;
+        const departure = new Date(document.getElementById('departureDate').value).toISOString();
+        const arrival = new Date(document.getElementById('arrivalDate').value).toISOString();
+        const capacity = parseInt(document.getElementById('capacity').value, 10);
+        const occupation = parseInt(document.getElementById('occupation').value, 10);
+        fetch('/v1/flights/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                flightNumber,
+                aircraft,
+                airline,
+                origin,
+                destination,
+                departure,
+                arrival,
+                capacity,
+                occupation
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.status === 'success') {
+                alert('Flight created successfully!');
+                window.location.href = `/flight.html?id=${data.data.flight._id}`;
+            } else {
+                alert('Error creating flight: ' + data.message);
+                window.location.href = '/';
+            }
+        })
+    })
+}
+});

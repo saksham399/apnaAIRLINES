@@ -18,7 +18,7 @@
                 <td class="align-middle">
                     <div class="dropdown mb-3" data-bs-auto-close="outside">
                         <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"> Filter</button>
-                        <div class="dropdown-menu p-4 w-100" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu p-4 w-100 fade" aria-labelledby="dropdownMenuButton">
                             <label for="originFilter" class="form-label">Origin</label>
                             <input type="text" class="form-control mb-2" id="originFilter" placeholder="Enter origin">
                             <label for="destinationFilter" class="form-label">Destination</label>
@@ -32,7 +32,40 @@
                     </div>
                 </td>
                 <td class="align-middle pe-5" id="newFlight">
-                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#createFlightModal">New Flight</button>
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#createFlightModal">Create New Flight</button>
+                    <div class="modal fade" id="createFlightModal" tabindex="0">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="createFlightModalLabel">New Flight</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="flightNumber" class="form-label">Flight Number</label>
+                                    <input type="text" class="form-control mb-2" id="flightNumber" required>
+                                    <label for="airline" class="form-label">Airline</label>
+                                    <input type="text" class="form-control mb-2" id="airline" required>
+                                    <label for="aircraft" class="form-label">Aircraft</label>
+                                    <input type="text" class="form-control mb-2" id="aircraft" required>
+                                    <label for="origin" class="form-label">Origin</label>
+                                    <input type="text" class="form-control mb-2" id="origin" required>
+                                    <label for="destination" class="form-label">Destination</label>
+                                    <input type="text" class="form-control mb-2" id="destination" required>
+                                    <label for="departureDate" class="form-label">Departure Date</label>
+                                    <input type="datetime-local" class="form-control mb-2" id="departureDate" required>
+                                    <label for="arrivalDate" class="form-label">Arrival Date</label>
+                                    <input type="datetime-local" class="form-control mb-2" id="arrivalDate" required>
+                                    <label for="capacity" class="form-label">Capacity</label>
+                                    <input type="text" class="form-control mb-2" id="capacity" required>
+                                    <label for="occupation" class="form-label">Occupation</label>
+                                    <input type="text" class="form-control mb-2" id="occupation" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" id="createFlightButton">Create Flight</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table><br>
