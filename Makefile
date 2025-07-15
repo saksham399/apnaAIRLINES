@@ -5,5 +5,5 @@ run:
 update:
 	git add $(FILES)
 	git status
-	git commit -m "$(MSG)"
+	git commit -m "Updated recent changes"
 	git push
