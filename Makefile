@@ -1,9 +1,9 @@
-FILES= controllers models public routes utils app.js package.json package-lock.json server.js Makefile
+FILES= controllers models public routes utils app.js package.json package-lock.json server.js Makefile README.md
 run:
 	npm start
 
 update:
-	git add .
+	git add ${FILES}
 	git status
 	git commit -m "Update recent changes"
 	git push
