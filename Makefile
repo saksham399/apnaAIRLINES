@@ -3,7 +3,7 @@ run:
 	npm start
 
 update:
-	git add ${FILES}
+	git add $(FILES)
 	git status
-	git commit -m "Update recent changes"
+	git commit -m "$(MSG)"
 	git push
