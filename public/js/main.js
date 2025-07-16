@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
 fetch('/v1/flights/')
     .then(response => response.json())
     .then(data => {
@@ -120,4 +119,3 @@ if (createFlightButton) {
         })
     })
 }
-});

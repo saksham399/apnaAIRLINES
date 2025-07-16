@@ -61,15 +61,15 @@ flightSchema.pre('save', function(next) {
   next();
 });
 
-flightSchema.pre('findOneAndUpdate', async function(next) {
-  if (this.occupation > this.capacity) {
-    return next(new Error('Occupation cannot exceed capacity'));
-  }
-  if (this.departure > this.arrival) {
-    return next(new Error('Departure time must be before arrival time'));
-  }
-  next();
-});
+// flightSchema.pre('findOneAndUpdate', async function(next) {
+//   if (this.occupation > this.capacity) {
+//     return next(new Error('Occupation cannot exceed capacity'));
+//   }
+//   if (this.departure > this.arrival) {
+//     return next(new Error('Departure time must be before arrival time'));
+//   }
+//   next();
+// });
 
 
 const Flight = mongoose.model('Flight', flightSchema);
